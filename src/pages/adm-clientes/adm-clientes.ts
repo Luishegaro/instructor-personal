@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 
 import { UsuarioProvider } from "../../providers/usuario/usuario"
 import { DatosinstructorPage } from '../../pages/datosinstructor/datosinstructor'
@@ -18,108 +18,218 @@ import { AdmDatosclientePage } from "../adm-datoscliente/adm-datoscliente"
   templateUrl: 'adm-clientes.html',
 })
 export class AdmClientesPage {
-  solicitudes=[]
-  datosbuscado=[]
-  publicaciones=[]
-  num=3
+  solicitudes = []
+  datosbuscado = []
+  publicaciones = []
+  num = 3
   constructor(public navCtrl: NavController,
-     public navParams: NavParams,
-     private user:UsuarioProvider,
-     public toastCtrl: ToastController
-     ) {
-      this.lstarPublicaciones()
-      
+    public navParams: NavParams,
+    private user: UsuarioProvider,
+    public toastCtrl: ToastController
+  ) {
+    this.lstarPublicaciones()
+
 
   }
   altodelIMG
   ionViewDidLoad() {
-   //alert("La resolución de tu pantalla es: " + screen.width + " x " + screen.height)
-    this.altodelIMG=screen.width
+    //alert("La resolución de tu pantalla es: " + screen.width + " x " + screen.height)
+    this.altodelIMG = screen.width
     this.cargardatos()
   }
-  cargardatos(){
-    this.user.verMissolicitud(false,"cliente")
-    .subscribe(soli=>{
-      this.solicitudes=soli
-      console.log(soli)
-    })
-    this.user.verMissolicitud(true,"cliente")
-    .subscribe(soli=>{
-      this.datosbuscado=soli
-      console.log(soli)
-    })
+  cargardatos() {
+    this.user.verMissolicitud(false, "cliente")
+      .subscribe(soli => {
+        this.solicitudes = soli
+        console.log(soli)
+      })
+    this.user.verMissolicitud(true, "cliente")
+      .subscribe(soli => {
+        this.datosbuscado = soli
+        console.log(soli)
+      })
   }
-  aceptar(item){
-    this.user.modificarinstructor_cliente(item.key,{estado:true})
-    .then(()=>{
-      item.estado=true
-      item.rol="instructor"
-      delete item.key
-      this.user.guardarRutina_cliente(item)
-    })
-    .catch(err=>{
-      console.log(err)
-    })
+  aceptar(item) {
+    this.user.modificarinstructor_cliente(item.key, { estado: true })
+      .then(() => {
+        item.estado = true
+        item.rol = "instructor"
+        delete item.key
+        this.user.guardarRutina_cliente(item)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
-  verCliente(keycli){
-    this.navCtrl.push(AdmDatosclientePage,keycli)
+  verCliente(keycli) {
+    this.navCtrl.push(AdmDatosclientePage, keycli)
   }
-  lstarPublicaciones(infiniteScroll?){
-    let mes=["Ene.","Feb.","Mar.","Abr.","May.","Jun.","Jul.","Ago.","Sep.","Oct.","Nov.","Dic."]
-    let hoy=new Date()
+  lstarPublicaciones(infiniteScroll?) {
+    let mes = ["Ene.", "Feb.", "Mar.", "Abr.", "May.", "Jun.", "Jul.", "Ago.", "Sep.", "Oct.", "Nov.", "Dic."]
+    let hoy = new Date()
     this.user.listarPublicasion(this.num)
-    .subscribe(res=>{
-      res.forEach(element => {
-        let prefi=""
-        let diap=element.fecha.toDate()
-        if(diap.getDate()==hoy.getDate() && 
-        diap.getMonth()==hoy.getMonth() &&
-        diap.getFullYear()==hoy.getFullYear()
-        )
-          prefi="Hoy "
-        else if(diap.getDate()+1==hoy.getDate() && 
-        diap.getMonth()==hoy.getMonth() &&
-        diap.getFullYear()==hoy.getFullYear())
-          prefi="Ayer "
-        else prefi=diap.getDate()+" de "+mes[diap.getMonth()]
+      .subscribe(res => {
+        res.forEach(element => {
+          let prefi = ""
+          let diap = element.fecha.toDate()
+          if (diap.getDate() == hoy.getDate() &&
+            diap.getMonth() == hoy.getMonth() &&
+            diap.getFullYear() == hoy.getFullYear()
+          )
+            prefi = "Hoy "
+          else if (diap.getDate() + 1 == hoy.getDate() &&
+            diap.getMonth() == hoy.getMonth() &&
+            diap.getFullYear() == hoy.getFullYear())
+            prefi = "Ayer "
+          else prefi = diap.getDate() + " de " + mes[diap.getMonth()]
 
-        element["fecha2"]=prefi+" "+ diap.getHours()+":"+(diap.getMinutes()<9?"0"+diap.getMinutes():diap.getMinutes())
-      });
-      let aNuevo =res.length - this.publicaciones.length==3? res.slice(res.length-3):res.slice(res.length-(res.length-this.publicaciones.length))
-      		this.publicaciones=this.publicaciones.concat(aNuevo)
-      console.log(res)
-      if(infiniteScroll)infiniteScroll.complete()
-    })
+          element["fecha2"] = prefi + " " + diap.getHours() + ":" + (diap.getMinutes() < 9 ? "0" + diap.getMinutes() : diap.getMinutes())
+        });
+        let aNuevo = res.length - this.publicaciones.length == 3 ? res.slice(res.length - 3) : res.slice(res.length - (res.length - this.publicaciones.length))
+        this.publicaciones = this.publicaciones.concat(aNuevo)
+        console.log(res)
+        if (infiniteScroll) infiniteScroll.complete()
+      })
   }
-  estadoToast=true;
-  alerta(){
+  estadoToast = true;
+  alerta() {
     const toast = this.toastCtrl.create({
       message: 'En esta sección encontrarás a todos tus alumnos. Selecciona un alumno para poder adicionar rutinas y dietas',
       showCloseButton: true,
       closeButtonText: 'Ok',
       dismissOnPageChange: true
     });
-    
-    if(this.estadoToast){
+
+    if (this.estadoToast) {
       toast.present()
-      this.estadoToast=false
-    } 
+      this.estadoToast = false
+    }
     toast.onDidDismiss(() => {
-      this.estadoToast=true
+      this.estadoToast = true
     });
   }
 
 
 
-  verInstructor(key){
-    this.navCtrl.push(DatosinstructorPage,key)
+  verInstructor(key) {
+    this.navCtrl.push(DatosinstructorPage, key)
   }
   doInfinite(infiniteScroll) {
     console.log('Begin async operation');
 
     setTimeout(() => {
-      this.num=this.num+3
+      this.num = this.num + 3
       this.lstarPublicaciones(infiniteScroll)
     }, 500);
   }
+
+  //funciones soap
+  soap() {
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.open('GET', 'http://test.sintesis.com.bo/WSApp­war/ComelecWS?WSDL', true, 'wshegaro', 'Wshegaro2019');
+    let sr =
+      `<?xml version="1.0" encoding="UTF-8"?>
+        <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://servicios.comelec.ws.sintesis.com.bo/">
+          <SOAP-ENV:Body>
+            <ns1:registroPlan>
+              <datos>
+                <categoriaProducto>1</categoriaProducto>
+                <codigoComprador>231</codigoComprador>
+                <codigoRecaudacion>231</codigoRecaudacion>
+                <correoElectronico>hegaro@hegaro.com.bo</correoElectronico>
+                <descripcionRecaudacion>PAGO Prueba</descripcionRecaudacion>
+                <documentoIdentidadComprador/>
+                <fecha>20190522</fecha>
+                <fechaVencimiento>0</fechaVencimiento>
+                <hora>190000</hora>
+                <horaVencimiento>0</horaVencimiento>
+                <moneda>BS</moneda>
+                <nombreComprador>Nombre Comprador</nombreComprador>
+                <planillas>
+                  <descripcion>Pago de prueba</descripcion>
+                  <montoCreditoFiscal>100</montoCreditoFiscal>
+                  <montoPago>100</montoPago>
+                  <nitFactura>12345678</nitFactura>
+                  <nombreFactura>Sintesis Test</nombreFactura>
+                  <numeroPago>1</numeroPago>
+                </planillas>
+                <precedenciaCobro>N</precedenciaCobro>
+                <transaccion>A</transaccion>
+              </datos>
+              <cuenta>wshegaro</cuenta>
+              <password>Wshegaro2019</password>
+            </ns1:registroPlan>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>`;
+
+    xmlhttp.onreadystatechange = () => {
+      if (xmlhttp.readyState == 4) {
+        if (xmlhttp.status == 200) {
+          let xml = xmlhttp.responseXML;
+          alert("True " + xmlhttp.responseText);
+        } else {
+          alert('error ' + xmlhttp.responseXML);
+          alert(xmlhttp.status);
+        }
+      }
+    }
+    // Send the POST request
+    xmlhttp.setRequestHeader('Content-Type', 'application/soap+xml');
+    xmlhttp.responseType = "document";
+    xmlhttp.send(sr);
+  }
+
+  /*soap() {
+
+    // build SOAP reques
+    var sr =
+      `<?xml version="1.0" encoding="UTF-8"?>
+      <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://servicios.comelec.ws.sintesis.com.bo/">
+      <SOAP-ENV:Body>
+          <ns1:registroPlan>
+          <datos>
+              <categoriaProducto>3</categoriaProducto>
+              <codigoComprador>231</codigoComprador>
+              <codigoRecaudacion>JA20160603232902</codigoRecaudacion>
+              <correoElectronico>hegaro@hegaro.com.bo</correoElectronico>
+              <descripcionRecaudacion>PAGO Prueba</descripcionRecaudacion>
+              <documentoIdentidadComprador/>
+              <fecha>20190522</fecha>
+              <fechaVencimiento>0</fechaVencimiento>
+              <hora>114000</hora>
+              <horaVencimiento>0</horaVencimiento>
+              <moneda>BS</moneda>
+              <nombreComprador>herlan garzon rodriguez</nombreComprador>
+              <planillas>
+              <descripcion>Pago de prueba</descripcion>
+              <montoCreditoFiscal></montoCreditoFiscal>
+              <montoPago></montoPago>
+              <nitFactura></nitFactura>
+              <nombreFactura></nombreFactura>
+              <numeroPago>1</numeroPago>
+              </planillas>
+              <precedenciaCobro>N</precedenciaCobro>
+              <transaccion>A</transaccion>
+          </datos>
+          <cuenta>wshegaro</cuenta>
+          <password>Wshegaro2019</password>
+          </ns1:registroPlan>
+      </SOAP-ENV:Body>
+      </SOAP-ENV:Envelope>`
+
+
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', ' application/soap+xml; charset=utf-8');
+
+    headers = headers.append('Access-Control-Allow-Origin', '*');
+    headers = headers.append('Access-Control-Allow-Methods', 'POST');
+    headers = headers.append("Accept", " application/soap+xml")
+
+    console.log(headers.get('Content-Type'))
+    this.http.post("http://test.sintesis.com.bo/WSApp-war/ComelecWS?WSDL", sr, { headers: headers })
+      .subscribe(data => {
+        console.log(data)
+      })
+
+  }*/
 }

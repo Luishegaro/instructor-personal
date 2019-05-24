@@ -154,7 +154,7 @@ export class AdmDatosclientePage {
   estadoToast=true;
   alerta(){
     const toast = this.toastCtrl.create({
-      message: 'Para asignar rutinas y dietas para '+this.datos.nombre +" primeramente debes crearlos en tu menu Rutinas y Hábitos alimenticios",
+      message: 'En esta sección podrás asignar rutinas y dietas para '+this.datos.nombre,
       showCloseButton: true,
       closeButtonText: 'Ok',
       dismissOnPageChange: true
@@ -243,7 +243,6 @@ export class AdmDatosclientePage {
       this.navCtrl.push(AdmCrearrutinaclientePage,this.key)
     }
     listarutinas(){
-    
         this.rutina.verRutinasinstodos(this.key)
         .subscribe(list=>{
           list.forEach(element => {

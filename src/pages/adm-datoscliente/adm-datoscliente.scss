@@ -2,7 +2,7 @@ page-adm-datoscliente {
     .menu ion-col{
         padding: 0 !important;
     }
-    img{
+    .img-slide{
         border-radius: 50%;
         width: 25px !important;
         height: 25px !important;
@@ -18,12 +18,8 @@ page-adm-datoscliente {
         margin:auto;
 
     }
-    ion-header{
-        z-index: 0 !important;
-    }
-    p{
-        text-align: center !important
-    }
+
+   
     .slide-zoom{
         height: 100% !important;
         text-align: left !important
@@ -42,4 +38,9 @@ page-adm-datoscliente {
         position:absolute;
         bottom:1px;
     }
+    .nombre-perfil-alumno{
+        text-align: center;
+    }
+    //content
+
 }

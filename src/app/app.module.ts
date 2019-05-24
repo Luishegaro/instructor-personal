@@ -7,6 +7,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { LoginPage } from '../pages/login/login';
 import { CrearusuarioPage } from '../pages/crearusuario/crearusuario';
@@ -262,6 +263,7 @@ import { AdmAlumnosPage } from '../pages/adm-alumnos/adm-alumnos';
     WheelSelector,
     Network,
     NetworkProvider,
+    SocialSharing,
     PhotoViewer
   ]
 })

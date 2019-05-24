@@ -7,6 +7,9 @@ import { DatosinstructorPage } from '../../pages/datosinstructor/datosinstructor
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
 import { VercursoPage } from '../vercurso/vercurso';
+
+//comaprtir publicacion
+import { SocialSharing } from '@ionic-native/social-sharing';
 /**
  * Generated class for the InstructoresPage page.
  *
@@ -35,7 +38,8 @@ num=3
     private toastctrl:ToastController,
     //private event:Events,
     private splashscreen:SplashScreen,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    private socialSharing: SocialSharing
     ) {
       this.store.get("key1")
       .then(key=>{
@@ -175,5 +179,54 @@ num=3
   verCursoDetalle(key){
     console.log('key'+key);
     this.navCtrl.push(VercursoPage,key)
+  }
+
+  //funciones compartir
+  compartir(){    
+    // Share via email
+    this.socialSharing.shareViaFacebook('OMAR', 'jaila', 'https://scontent.flpb1-1.fna.fbcdn.net/v/t1.0-9/60766753_1083225051869219_7949412585705570304_n.jpg?_nc_cat=105&_nc_ht=scontent.flpb1-1.fna&oh=5517aff1d5fef2734ac8a3297b9edfc4&oe=5D671963').then(() => {
+      // Success!
+    }).catch((err) => {
+      alert(JSON.stringify(err));
+    });
+  }
+  whatsappShare(item) {
+    console.log(item.titulo +" "+item.comentario);
+    console.log(item.imagenes[0].url);
+    this.socialSharing.shareViaWhatsApp(item.titulo +"/n "+item.comentario , "https://hegaro.000webhostapp.com/goodme.jpg","https://play.google.com/store/apps/details?id=com.hegaro.goodme&hl=es").then(() => {
+      console.log("shareViaWhatsApp: Success");
+    }).catch(() => {
+      console.error("shareViaWhatsApp: failed");
+    });
+  }
+  facebookShare(item) {
+    this.socialSharing.shareViaFacebook(item.titulo +"/n" +item.comentario , "https://hegaro.000webhostapp.com/goodme.jpg","https://play.google.com/store/apps/details?id=com.hegaro.goodme&hl=es").then(() => {
+      console.log("shareViaFacebook: Success");
+    }).catch(() => {
+      console.error("shareViaFacebook: failed");
+    });
+  }
+
+  shareViaTwitter(item) {
+    this.socialSharing.shareViaTwitter(item.titulo +"/n" +item.comentario , "https://hegaro.000webhostapp.com/goodme.jpg","https://play.google.com/store/apps/details?id=com.hegaro.goodme&hl=es").then(() => {
+      console.log("shareViaTwitter: Success");
+    }).catch(() => {
+      console.error("shareViaTwitter: failed");
+    });
+  }
+  shareViaInstagram(item) {
+    this.socialSharing.shareViaInstagram(item.titulo +"/n" +item.comentario , "https://hegaro.000webhostapp.com/goodme.jpg").then(() => {
+      console.log("shareViaInstagram: Success");
+    }).catch(() => {
+      console.error("shareViaInstagram: failed");
+    });
+  }
+
+   shareViaEmail(item) {
+    this.socialSharing.share(item.titulo +"/n" +item.comentario ,"", "https://hegaro.000webhostapp.com/goodme.jpg","https://play.google.com/store/apps/details?id=com.hegaro.goodme&hl=es").then(() => {
+      console.log("shareMail: Success");
+    }).catch(() => {
+      console.error("shareMail: failed");
+    });
   }
 }

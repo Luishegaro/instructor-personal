@@ -1,0 +1,7 @@
+{
+    "/WSApp­war/*": {
+      "target": "http://test.sintesis.com.bo",
+      "secure": false,
+      "changeOrigin": true
+    }
+  }

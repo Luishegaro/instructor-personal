@@ -17,9 +17,8 @@
     
     <ion-title>Datos personales</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only color="royal" (click)="cerrarSesion()">
-        <ion-icon name="log-out"></ion-icon>
-      </button>
+        <button ion-button menuToggle><ion-icon name="md-more"></ion-icon></button>
+     
     </ion-buttons>
   </ion-toolbar>
 
@@ -179,7 +178,6 @@
                     </ion-col>
                   </ion-row>
             </div>
-            
             </ion-grid>
         </ion-card-content>
       </ion-card>
@@ -188,15 +186,44 @@
       </ion-item>
       <ion-grid no-padding *ngIf="rol=='instructor'">
         <ion-row>
-
-          <ion-col  col-4 *ngFor="let p of publicaciones" >
-            <ion-slides pager >
+          <ion-col col-4 *ngFor="let p of publicaciones" >
+            <ion-slides pager class="post-perfil" >
                 <ion-slide *ngFor="let imagen of p.imagenes">
                     <img [src]="imagen.url" (click)="opciones(p,imagen.url)">
                 </ion-slide>
             </ion-slides>
-            
           </ion-col>
         </ion-row>
       </ion-grid>
 </ion-content>
+<ion-menu side="right" [content]="mycontent">
+  <ion-header>
+      <ion-toolbar>
+          <ion-title>Opciones</ion-title>
+          <ion-buttons start>
+              <button ion-button menuClose><ion-icon name="ios-close"></ion-icon></button>
+          </ion-buttons>
+        </ion-toolbar>
+  </ion-header>
+    <ion-content>
+      <ion-list>
+          <ion-item detail-none>
+            <button ion-button clear start>
+                <ion-icon name="md-card"></ion-icon> &nbsp;&nbsp; Metodos de Pago
+            </button>
+          </ion-item>
+          <ion-item detail-none>
+              <button ion-button clear start>
+                  <ion-icon name="md-cash"></ion-icon> &nbsp;&nbsp; Historial 
+              </button>
+            </ion-item>
+            <ion-item detail-none (click)=" cerrarSesion()">
+                <button ion-button clear start >
+                    <ion-icon name="md-exit"></ion-icon>&nbsp;&nbsp; Salir
+                </button>
+              </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  
+  <ion-nav #mycontent [root]="rootPage"></ion-nav>
