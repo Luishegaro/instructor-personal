@@ -1,0 +1,87 @@
+{
+  "googdme":{
+      "MENU-ALUMNO-CURSOS": "courses",
+      "MENU-ALUMNO-PERFIL": "My profile",
+      "MENU-ALUMNO-RUTINAS": "Routines",
+
+
+      "PERFIL-FECHA-NAC": "Birthdate",
+      "PERFIL-GENERO": "Gender",
+      "PERFIL-PESO": "Weight",
+      "PERFIL-ALTURA": "Height",
+      "PERFIL-TELEFONO": "Phone",
+      "PERFIL-CORREO": "Email",
+
+      "PERFIL-BOTON-EDITAR": "Edit data",
+      "PERFIL-BOTON-OCULTAR": "Hide",
+
+      "CURSOS-ADMIN-TITULO":"My courses",
+      "CURSOS-ADMIN-MODIFICAR":"Update",
+      "CURSOS-ADMIN-ELIMINAR":"Delete",
+      "CURSOS-ADMIN-CANCELAR":"Cancel",
+
+      "CURSOS-ADMIN-DURACION":"Duration",
+      "CURSOS-ADMIN-PRECIO":"Price",
+
+
+      "ADMIN-ALUMNOS-TITULO":"My students",
+      "ADMIN-NUEVAS-SUSCRIPCIONES":"New subscriptions",
+
+      "ADMIN-MENU-CURSOS":"Courses",
+      "ADMIN-MENU-ALUMNOS":"Students",
+      "ADMIN-MENU-RUTINAS:"Routines",
+      "ADMIN-MENU-NUTRICION":"Nutrition",
+      "ADMIN-MENU-PERFIL":"Profile",
+
+      "ADMIN-RUTINAS-TITULO":"Default routines",
+      "ADMIN-RUTINAS-TEXT-NULL":"It has no routines by default",
+      "ADMIN-RUTINAS-CREAR":"Create routines",
+      "ADMIN-RUTINAS-CREAR-NOMBRE":"Name",
+      "ADMIN-RUTINAS-CREAR-DESCRIPCION":"Description",
+      "ADMIN-RUTINAS-CREAR-DIAS":"Days",
+      "ADMIN-RUTINAS-CREAR-DIAS-LU":"Monday",
+      "ADMIN-RUTINAS-CREAR-DIAS-MA":"Tuesday",
+      "ADMIN-RUTINAS-CREAR-DIAS-MI":"Wednesday",
+      "ADMIN-RUTINAS-CREAR-DIAS-JU":"Thursday",
+      "ADMIN-RUTINAS-CREAR-DIAS-VI":"Friday",
+      "ADMIN-RUTINAS-CREAR-DIAS-SA":"Saturday",
+      "ADMIN-RUTINAS-CREAR-DIAS-DO":"Sunday",
+
+
+
+
+      "ADMIN-RUTINAS-CREAR-ADD-EJER":"Selected Exercises",
+      "ADMIN-RUTINAS-CREAR-ADD-TEXT":"Add Exercises",
+      "ADMIN-RUTINAS-SELEC-EJE":"Select exercise",
+      "ADMIN-RUTINAS-EJER-HOMBROS":"Shoulders",
+      "ADMIN-RUTINAS-EJER-BRAZOS":"Arms",
+      "ADMIN-RUTINAS-EJER-PIERNAS":"Legs",
+
+      "ADMIN-EJERCICIO-TITLE":"Type of exercises",
+      "ADMIN-EJERCICIO-HOMBRO":"exercises for shoulders",
+      "ADMIN-EJERCICIO-BRAZO":"exercises for arms",
+      "ADMIN-EJERCICIO-PIERNA":"exercises for legs",
+      "ADMIN-EJERCICIO-CREADOS":"Type of exercises created",
+
+      "ADMIN-EJERCICIO-NULL":"You do not have exercises created",
+      "ADMIN-EJERCICIO-CREAR":"Create exercises",
+      "ADMIN-EJERCICIO-CREAR-NOMBRE":"Name",
+      "ADMIN-EJERCICIO-CREAR-DESCR":"Description",
+      "ADMIN-EJERCICIO-CREAR-INST":"Instructions",
+      "ADMIN-EJERCICIO-CREAR-IMAG":"Select images of the exercise (optional)",
+      "ADMIN-EJERCICIO-CREAR-VIDEO":"Link video Youtube (optional)",
+
+      "ADMIN-NUTRICION-D1":"Diet for before training",
+      "ADMIN-NUTRICION-D2":"Diet for after GYM",
+      "ADMIN-NUTRICION-D3":"Breakfast diet",
+      "ADMIN-NUTRICION-D4":"Diet for mind-morning",
+      "ADMIN-NUTRICION-D5":"Diet for Lunch",
+      "ADMIN-NUTRICION-D6":"Diet for mind-afternon",
+      "ADMIN-NUTRICION-D7":"Diet for dinner",
+
+      "ADMIN-NUTRICION-TITULO":"Create diet",
+      "ADMIN-NUTRICION-IMAGENES":"Select images of the diet",
+
+      "ADMIN-PERFIL":"My personal information"
+  }
+}

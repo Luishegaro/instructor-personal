@@ -93,7 +93,7 @@ import { DietasProvider } from '../providers/dietas/dietas';
 //select individuales
 import { MultiPickerModule } from 'ion-multi-picker';
 import { WheelSelector } from '@ionic-native/wheel-selector';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AdmModpublicacionPage } from '../pages/adm-modpublicacion/adm-modpublicacion';
 import { HistorialejerciciosPage } from '../pages/historialejercicios/historialejercicios';
 
@@ -102,6 +102,18 @@ import { NetworkProvider } from '../providers/network/network';
 import { VercursoPage } from '../pages/vercurso/vercurso';
 import { PagarPage } from '../pages/pagar/pagar';
 import { AdmAlumnosPage } from '../pages/adm-alumnos/adm-alumnos';
+
+
+import { PayPal } from '@ionic-native/paypal'
+import { AdmHorarioPage } from '../pages/adm-horario/adm-horario';
+import { Geolocation } from '@ionic-native/geolocation';
+
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/','.json');
+}
 
 @NgModule({
   declarations: [
@@ -151,7 +163,8 @@ import { AdmAlumnosPage } from '../pages/adm-alumnos/adm-alumnos';
     AdmModpublicacionPage,
     VercursoPage,
     PagarPage,
-    AdmAlumnosPage
+    AdmAlumnosPage,
+    AdmHorarioPage
 
   ],
   imports: [
@@ -179,6 +192,14 @@ import { AdmAlumnosPage } from '../pages/adm-alumnos/adm-alumnos';
           ios: {
             backButtonText: 'Atras'
           }
+        }
+    }),
+    HttpClientModule,
+    TranslateModule.forRoot({
+        loader: {
+            provide: TranslateLoader,
+            useFactory:(createTranslateLoader),
+            deps: [HttpClient]
         }
     }),
     AngularFireModule.initializeApp(firebaseConfig.firebase),
@@ -241,7 +262,8 @@ import { AdmAlumnosPage } from '../pages/adm-alumnos/adm-alumnos';
     AdmModpublicacionPage,
     VercursoPage,
     PagarPage,
-    AdmAlumnosPage
+    AdmAlumnosPage,
+    AdmHorarioPage
     
   ],
   providers: [
@@ -264,7 +286,11 @@ import { AdmAlumnosPage } from '../pages/adm-alumnos/adm-alumnos';
     Network,
     NetworkProvider,
     SocialSharing,
-    PhotoViewer
+    PhotoViewer,
+    PayPal,
+    Geolocation
   ]
 })
 export class AppModule {}
+
+

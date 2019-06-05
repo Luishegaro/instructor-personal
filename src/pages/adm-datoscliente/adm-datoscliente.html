@@ -29,8 +29,8 @@
 
 
 <ion-content padding> 
-  <ion-slides #mySlider (ionDidChange)="onSlideChanged($event)">
-    <ion-slide >
+  <ion-slides #mySlider (ionSlideDidChange)="onSlideChanged($event)">
+    <ion-slide value="first">
             <ion-avatar>
               <img class="img-alumno" [src]="datos.foto" />
             </ion-avatar>
@@ -69,7 +69,7 @@
             </ion-item>
     </ion-slide>
     
-    <ion-slide>
+    <ion-slide value="second">
         <ion-fab right buttom class="slide-rutinas">
             <button ion-fab mini (click)="crear()"><ion-icon name="add"></ion-icon></button>
         </ion-fab>
@@ -165,7 +165,7 @@
           </ng-template>
           
     </ion-slide>
-    <ion-slide>
+    <ion-slide value="third">
         <ion-list >
             <div *ngIf="items1.length!=0;else elseBlock">
               <div *ngFor="let item of items1" >
@@ -204,7 +204,7 @@
                         <p>{{ejer.tipo}}</p>
                           <p>{{ejer.descorta}}</p>
                           <button ion-button clear item-end icon-only>
-                              <ion-icon color="dark" name='ios-arrow-forward'></ion-icon>
+                              <ion-icon color="dark" name='ios-arrow-forward' (click)="verDetDieta(ejer)"></ion-icon>
                           </button>
                       </ion-item>
                   </div>

@@ -1,0 +1,85 @@
+{
+  "googdme":{
+    "MENU-ALUMNO-CURSOS": "Cursos",
+    "MENU-ALUMNO-PERFIL": "Mi perfil",
+    "MENU-ALUMNO-RUTINAS": "Rutinas",
+  
+  
+    "PERFIL-FECHA-NAC": "Fecha de Nacimiento",
+    "PERFIL-GENERO": "Genero",
+    "PERFIL-PESO": "Peso",
+    "PERFIL-ALTURA": "Altura",
+    "PERFIL-TELEFONO": "Teléfono",
+    "PERFIL-CORREO": "Correo",
+  
+    "PERFIL-BOTON-EDITAR": "Editar datos",
+    "PERFIL-BOTON-OCULTAR": "Ocultar",
+  
+    "CURSOS-ADMIN-TITULO":"Mis Cursos",
+    "CURSOS-ADMIN-MODIFICAR":"Modificar",
+    "CURSOS-ADMIN-ELIMINAR":"Eliminar",
+    "CURSOS-ADMIN-CANCELAR":"Cancelar",
+  
+    "CURSOS-ADMIN-DURACION":"Duración",
+    "CURSOS-ADMIN-PRECIO":"Precio",
+  
+  
+    "ADMIN-ALUMNOS-TITULO":"Mis alumnos",
+    "ADMIN-NUEVAS-SUSCRIPCIONES":"Nuevas suscripciones",
+  
+    "ADMIN-MENU-CURSOS":"Cusos",
+    "ADMIN-MENU-ALUMNOS":"Alumnos",
+    "ADMIN-MENU-RUTINAS:"Rutinas",
+    "ADMIN-MENU-NUTRICION":"Nutrición",
+    "ADMIN-MENU-PERFIL":"Perfil",
+  
+    "ADMIN-RUTINAS-TITULO":"Rutinas por defecto",
+    "ADMIN-RUTINAS-TEXT-NULL":"No tiene rutinas por defecto",
+    "ADMIN-RUTINAS-CREAR":"Crear rutina",
+    "ADMIN-RUTINAS-CREAR-NOMBRE":"Nombre",
+    "ADMIN-RUTINAS-CREAR-DESCRIPCION":"Descripción",
+    "ADMIN-RUTINAS-CREAR-DIAS":"Dias",
+  
+    "ADMIN-RUTINAS-CREAR-DIAS-LU":"Lunes",
+    "ADMIN-RUTINAS-CREAR-DIAS-MA":"Martes",
+    "ADMIN-RUTINAS-CREAR-DIAS-MI":"Miercoles",
+    "ADMIN-RUTINAS-CREAR-DIAS-JU":"Jueves",
+    "ADMIN-RUTINAS-CREAR-DIAS-VI":"Viernes",
+    "ADMIN-RUTINAS-CREAR-DIAS-SA":"Sábado",
+    "ADMIN-RUTINAS-CREAR-DIAS-DO":"Domingo",
+  
+    "ADMIN-RUTINAS-CREAR-ADD-EJER":"Ejercicios Seleccionados",
+    "ADMIN-RUTINAS-CREAR-ADD-TEXT":"Adicionar ejercicio",
+    "ADMIN-RUTINAS-SELEC-EJE":"Seleccionar ejercicio",
+    "ADMIN-RUTINAS-EJER-HOMBROS":"Adicionar ejercicio",
+    "ADMIN-RUTINAS-EJER-BRAZOS":"Adicionar ejercicio",
+    "ADMIN-RUTINAS-EJER-PIERNAS":"Adicionar ejercicio",
+  
+    "ADMIN-EJERCICIO-TITLE":"Tipos de ejercicios",
+    "ADMIN-EJERCICIO-HOMBRO":"Ejercicios para hombro",
+    "ADMIN-EJERCICIO-BRAZO":"Ejercicios para brazo",
+    "ADMIN-EJERCICIO-PIERNA":"Ejercicios para pierna",
+    "ADMIN-EJERCICIO-CREADOS":"Tipos de ejercicios creados",
+  
+    "ADMIN-EJERCICIO-NULL":"No tienes ejercicios creados",
+    "ADMIN-EJERCICIO-CREAR":"Crear ejercicio",
+    "ADMIN-EJERCICIO-CREAR-NOMBRE":"Nombre",
+    "ADMIN-EJERCICIO-CREAR-DESCR":"Descripción",
+    "ADMIN-EJERCICIO-CREAR-INST":"Instrucciones",
+    "ADMIN-EJERCICIO-CREAR-IMAG":"Selecciona imagenes del ejercicio (opcional)",
+    "ADMIN-EJERCICIO-CREAR-VIDEO":"Link video Youtube (opcional)",
+  
+    "ADMIN-NUTRICION-D1":"Dieta para antes de entrenar",
+    "ADMIN-NUTRICION-D2":"Dieta para despues del GYM",
+    "ADMIN-NUTRICION-D3":"Dieta para desayuno",
+    "ADMIN-NUTRICION-D4":"Dieta para media mañana",
+    "ADMIN-NUTRICION-D5":"Dieta para almuerzo",
+    "ADMIN-NUTRICION-D6":"Dieta para media tarde",
+    "ADMIN-NUTRICION-D7":"Dieta para cenar",
+  
+    "ADMIN-NUTRICION-TITULO":"Crear dieta",
+    "ADMIN-NUTRICION-IMAGENES":"Seleccionar imagenes de la dieta",
+  
+    "ADMIN-PERFIL":"Mis datos personales"
+  }
+}

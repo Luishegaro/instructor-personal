@@ -14,28 +14,30 @@
 <ion-content>
   <div>
     <ion-slides pager>
-        <ion-slide>
-          <img src="../../assets/imgs/defecto.jpeg" alt="">
+        <ion-slide *ngFor="let foto of item.imagenes">
+          <img [src]="foto.url" alt="">
         </ion-slide>
       </ion-slides>
     </div>
     <ion-card-content>
           <button ion-button outline block (click)="suscribirme()" >
-              Suscribirme | 100 USD
+              Suscribirme | {{item.costo}} {{item.moneda}}
           </button>
-        <p>Curso Fitnes</p>
+        <p>{{item.titulo}}</p>
         <p class="post-ver-detalle">
-          fitnes moldea tu cuerpo a la perfeccion para este verano<br>
-          Duración 10 semanas
+          {{item.comentario}}<br>
+          Duración {{item.horas}} hora(s) por semana durante {{item.semanas}} semana(s)
           <br>
-          WhatsApp
+          WhatsApp {{item.telefono}}
         </p>
-        <ion-item (click)="verinstructor()">
-            Instructor
+        <ion-item (click)="verinstructor(item.idcliente)">
+            
             <ion-avatar item-start>
-                <img [src]="">
+                <img [src]="item.foto">
               </ion-avatar>
-              <p> Luis Fernando Huanca Churata</p>
+              <p> {{item.nombre}}</p>
         </ion-item>
+        <p>{{item.direccion}}</p>
       </ion-card-content>
+      <div id="mapcurso" style="height: 200px;"></div>
 </ion-content>

@@ -1,10 +1,14 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { Component,ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ToastController, Slides,ActionSheetController,AlertController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+
 
 import { UsuarioProvider } from "../../providers/usuario/usuario"
 import { DatosinstructorPage } from '../../pages/datosinstructor/datosinstructor'
+import { AdmModpublicacionPage } from '../adm-modpublicacion/adm-modpublicacion';
+import { AngularFireStorage } from 'angularfire2/storage';
 
-import { AdmDatosclientePage } from "../adm-datoscliente/adm-datoscliente"
+
 /**
  * Generated class for the AdmClientesPage page.
  *
@@ -21,34 +25,67 @@ export class AdmClientesPage {
   solicitudes = []
   datosbuscado = []
   publicaciones = []
+  
+  publicacionesC = []
   num = 3
+  rol
+
+  @ViewChild('mySlider') slider: Slides;
+  selectedSegment='second';
+  slides = [
+    {
+      id: "second",
+      title: "Second Slide"
+    },
+    {
+      id: "third",
+      title: "Third Slide"
+    }
+  ];
+  
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private user: UsuarioProvider,
-    public toastCtrl: ToastController
+    private store:Storage,
+    private alert:AlertController,
+    public toastCtrl: ToastController,
+    public storage:AngularFireStorage,
+    public actionSheetCtrl: ActionSheetController
   ) {
+    this.store.get("rol").then(rol=>{
+      this.rol=rol
+    })
+    
     this.lstarPublicaciones()
-
-
   }
+  
+
+   //funciones tab slide
+   onSegmentChanged(segmentButton) {
+    //console.log("Segment changed to", segmentButton.value);
+     const selectedIndex = this.slides.findIndex((slide) => {
+       return slide.id === segmentButton.value;
+     });
+     this.slider.slideTo(selectedIndex);
+   }
+ 
+   onSlideChanged(slider) {
+     //console.log('Slide changed',slider,this.selectedSegment);
+     const currentSlide = this.slides[slider.realIndex];
+     this.selectedSegment = currentSlide.id;
+   }
+   //end funciones tab slide
+
+
   altodelIMG
   ionViewDidLoad() {
+    this.verMispublicaciones()
     //alert("La resolución de tu pantalla es: " + screen.width + " x " + screen.height)
     this.altodelIMG = screen.width
-    this.cargardatos()
   }
-  cargardatos() {
-    this.user.verMissolicitud(false, "cliente")
-      .subscribe(soli => {
-        this.solicitudes = soli
-        console.log(soli)
-      })
-    this.user.verMissolicitud(true, "cliente")
-      .subscribe(soli => {
-        this.datosbuscado = soli
-        console.log(soli)
-      })
-  }
+
+
+ 
   aceptar(item) {
     this.user.modificarinstructor_cliente(item.key, { estado: true })
       .then(() => {
@@ -61,12 +98,14 @@ export class AdmClientesPage {
         console.log(err)
       })
   }
-  verCliente(keycli) {
+ 
+ /* verCliente(keycli) {
     this.navCtrl.push(AdmDatosclientePage, keycli)
-  }
-  lstarPublicaciones(infiniteScroll?) {
-    let mes = ["Ene.", "Feb.", "Mar.", "Abr.", "May.", "Jun.", "Jul.", "Ago.", "Sep.", "Oct.", "Nov.", "Dic."]
-    let hoy = new Date()
+  }*/
+  
+  lstarPublicaciones(infiniteScroll?){
+    let mes=["Ene.","Feb.","Mar.","Abr.","May.","Jun.","Jul.","Ago.","Sep.","Oct.","Nov.","Dic."]
+    let hoy=new Date()
     this.user.listarPublicasion(this.num)
       .subscribe(res => {
         res.forEach(element => {
@@ -178,6 +217,85 @@ export class AdmClientesPage {
     xmlhttp.responseType = "document";
     xmlhttp.send(sr);
   }
+
+  //VER PUBLICACIONES CUADRADOS
+  verMispublicaciones(){
+    this.user.listarMisPublicasion()
+    .subscribe(data=>{
+      this.publicacionesC=data
+    })
+  }
+
+  opciones(p){
+    this.actionSheetCtrl.create({
+      buttons:[
+        {
+          text: 'Modificar',
+
+          handler: () => {
+            console.log('Archive clicked');
+            let datos={
+              key:p.key,
+              comentario:p.comentario,
+              imagenes:p.imagenes,
+              titulo:p.titulo,
+              costo:p.costo,
+              semanas:p.semanas,
+              meses:p.meses,
+              coordenadas:p.coordenadas,
+              direccion:p.direccion,
+              
+              horas:p.horas
+            }
+            this.navCtrl.push(AdmModpublicacionPage,datos)
+          }
+        },
+        {
+          text: 'Eliminar',
+
+          handler: () => {
+            console.log('Archive clicked');
+            //this.eliminarpubli(p)
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    }).present()
+  }
+  eliminarpubli(p){
+    let alert = this.alert.create({
+      title: 'Eliminar publicacion',
+      message: 'Seguro que desea eliminar esta publicacion?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Ok',
+          handler: () => {
+            for(let i in p.imagenes)
+              this.storage.ref("publicaciones/"+p.key+'/'+p.imagenes[i].nombre).delete()
+            this.user.eliminarPublicasion(p.key)
+           
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+
+  "<?xml version='1.0' encoding='UTF-8'?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Body><ns0:registroPlanResponse xmlns:ns0=\"http://servicios.comelec.ws.sintesis.com.bo/\"><return><codigoError>0</codigoError><descripcionError>Pago registrado</descripcionError><idTransaccion>201905240000010</idTransaccion></return></ns0:registroPlanResponse></S:Body></S:Envelope>" 
 
   /*soap() {
 

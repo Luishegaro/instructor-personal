@@ -93,6 +93,7 @@
 
 					</ion-slides>
 					<ion-card-content>
+						<h3>{{p.titulo}}</h3>
 						<p class="descripcion-post">{{p.comentario}}
 						</p>
 						<ion-grid class="pricing-post">
@@ -105,7 +106,7 @@
 									Precio {{p.costo}} {{p.moneda}}
 								</ion-col>
 								<ion-col col-auto align-left >
-										<button ion-button outline (click)="verCursoDetalle(p.idcliente)">
+										<button ion-button outline (click)="verCursoDetalle(p)">
 												Suscribirse
 										</button>
 								</ion-col>

@@ -54,8 +54,21 @@ export class AdmDatosclientePage {
   edad2=""
 
   @ViewChild('mySlider') slider: Slides;
-  selectedSegment: string;
-  slides: any;
+  selectedSegment='first';
+  slides = [
+    {
+      id: "first",
+      title: "First Slide"
+    },
+    {
+      id: "second",
+      title: "Second Slide"
+    },
+    {
+      id: "third",
+      title: "Third Slide"
+    }
+  ];
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public rutina:RutinaProvider,
@@ -66,27 +79,13 @@ export class AdmDatosclientePage {
     public user : UsuarioProvider,
     public dieta:DietasProvider
     ) {
-      this.key=navParams.data,
-      this.selectedSegment = 'first';
-      this.slides = [
-        {
-          id: "first",
-          title: "First Slide"
-        },
-        {
-          id: "second",
-          title: "Second Slide"
-        },
-        {
-          id: "third",
-          title: "Third Slide"
-        }
-      ];
+      this.key=navParams.data
+      
   }
 
   //funciones tab slide
   onSegmentChanged(segmentButton) {
-    console.log("Segment changed to", segmentButton.value);
+   //console.log("Segment changed to", segmentButton.value);
     const selectedIndex = this.slides.findIndex((slide) => {
       return slide.id === segmentButton.value;
     });
@@ -94,8 +93,8 @@ export class AdmDatosclientePage {
   }
 
   onSlideChanged(slider) {
-    console.log('Slide changed');
-    const currentSlide = this.slides[slider.activeIndex];
+    //console.log('Slide changed',slider,this.selectedSegment);
+    const currentSlide = this.slides[slider.realIndex];
     this.selectedSegment = currentSlide.id;
   }
   //end funciones tab slide
@@ -104,11 +103,9 @@ export class AdmDatosclientePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad AdmDatosclientePage');
     this.cargardatos()
-    console.log('ionViewDidLoad RutinasPage');
     this.listarutinas()
     this.listarrutinasdef()
     console.log(this.ejers)
-    console.log('ionViewDidLoad RutinasPage');
     this.listadietas()
   }
 

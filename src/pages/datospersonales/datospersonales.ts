@@ -21,6 +21,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AdmCrearpublicasionPage } from '../adm-crearpublicasion/adm-crearpublicasion';
 import { AdmModpublicacionPage } from '../adm-modpublicacion/adm-modpublicacion';
 import { AngularFireStorage } from 'angularfire2/storage';
+import { AdmHorarioPage } from '../adm-horario/adm-horario';
 
 /**
  * Generated class for the DatospersonalesPage page.
@@ -309,7 +310,7 @@ export class DatospersonalesPage {
         diap.getMonth()==hoy.getMonth() &&
         diap.getFullYear()==hoy.getFullYear()
         )
-          prefi="Hoy "
+          prefi="Hoy"
         else if(diap.getDate()+1==hoy.getDate() && 
         diap.getMonth()==hoy.getMonth() &&
         diap.getFullYear()==hoy.getFullYear())
@@ -359,7 +360,11 @@ export class DatospersonalesPage {
               titulo:p.titulo,
               costo:p.costo,
               semanas:p.semanas,
-              meses:p.meses
+              meses:p.meses,
+              coordenadas:p.coordenadas,
+              direccion:p.direccion,
+              
+              horas:p.horas
             }
             this.navCtrl.push(AdmModpublicacionPage,datos)
           }
@@ -406,5 +411,8 @@ export class DatospersonalesPage {
       ]
     });
     alert.present();
+  }
+  horarios(){
+    this.navCtrl.push(AdmHorarioPage)
   }
 }

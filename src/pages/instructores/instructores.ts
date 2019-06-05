@@ -176,9 +176,9 @@ num=3
     }, 500);
   }
 
-  verCursoDetalle(key){
-    console.log('key'+key);
-    this.navCtrl.push(VercursoPage,key)
+  verCursoDetalle(item){
+    console.log(item);
+    this.navCtrl.push(VercursoPage,item)
   }
 
   //funciones compartir
